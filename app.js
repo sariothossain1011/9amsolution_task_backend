@@ -22,7 +22,7 @@ app.use((err, req, res, next) => {
   }
 });
 
-
+app.get("/", (req, res) => res.send("Express on Vercel"));
 
 readdirSync("./routes").map(r => app.use("/api/v1", require(`./routes/${r}`)))
 module.exports = app;
