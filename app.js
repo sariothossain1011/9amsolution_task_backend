@@ -9,12 +9,12 @@ const ErrorHandler = require("./middleware/ErrorHandler");
 require('./db/conn');
 dotenv.config({path:'./config.env'});
 
-app.use(cors());
 app.use(express.json());
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(ErrorHandler)
 app.use(helmet());
+app.use(cors());
 
 app.use((err, req, res, next) => {
   if (err) {
