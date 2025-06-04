@@ -3,12 +3,25 @@ const cors = require("cors")
 const app = express();
 const { readdirSync } = require("fs");
 const dotenv = require('dotenv');
+const bodyParser = require("body-parser");
+const helmet = require("helmet");
+const ErrorHandler = require("./middleware/ErrorHandler");
 require('./db/conn');
 dotenv.config({path:'./config.env'});
 
 app.use(cors());
 app.use(express.json());
-
+app.use(bodyParser.json());
+app.use(ErrorHandler)
+app.use(helmet());
+app.use("/",(req,res)=>{
+    res.send({message:"working successfully"})
+})
+app.use((err, req, res, next) => {
+  if (err) {
+    res.status(500).json({ message: "The Server Error Here" });
+  }
+});
 
 
 readdirSync("./routes").map(r => app.use("/api/v1", require(`./routes/${r}`)))
