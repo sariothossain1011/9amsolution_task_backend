@@ -150,7 +150,7 @@ http://beautyhub.localhost:5173
 
 ## 📓 Environment Variables
 
-### server/.env.example
+### 9amsolution-task-frontend/config.env
 
 ```
 MONGO_URI=your_mongodb_uri
